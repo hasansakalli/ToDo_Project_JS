@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To-Do</title>
+    <script
+      src="https://kit.fontawesome.com/9753036172.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="box" id="box">
+        <h1>To-Do List</h1>
+
+        <input type="text" id="todo-input" />
+        <input type="button" id="todo-add" value="Add" />
+        <input type="button" id="todo-clear" value="Delete All" />
+
+        <div class="aufgabe" id="aufgabe"></div>
+        <script>
+          var addButton = document.getElementById("todo-add");
+          var clearButton = document.getElementById("todo-clear");
+          var inputText = document.getElementById("todo-input");
+          var aufGabe = document.getElementById("aufgabe");
+          let clearToDo = document.getElementById("todo-clear");
+
+          addButton.addEventListener("click", function () {
+
+            const isEmpty = (str) => !str.trim().length;
+
+            if (isEmpty(inputText.value)) {
+              console.log("boşluk var");
+            } else {
+
+              let paragraph = document.createElement("p");
+              let para = document.createElement("div");
+
+              
+              para.innerHTML = "<i class='fa-solid fa-trash-can'></i>";
+              para.style.cursor = "Pointer";
+              para.style.color = "#000000";
+              para.style.fontSize = "13px";
+             
+              para.style.alignContent="center";
+
+              aufGabe.appendChild(paragraph);
+              aufGabe.appendChild(para);
+
+              paragraph.classList.add("paragraph-style");
+
+              paragraph.innerHTML = inputText.value;
+
+              inputText.value = "";
+
+              clearToDo.addEventListener("click", function () {
+                aufGabe.removeChild(paragraph);
+                aufGabe.removeChild(para);
+              });
+
+              para.addEventListener("click", function () {
+                aufGabe.removeChild(paragraph);
+                aufGabe.removeChild(para);
+              });
+            }
+          });
+        </script>
+      </div>
+    </div>
+  </body>
+</html>
